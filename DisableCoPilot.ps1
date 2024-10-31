@@ -4,13 +4,13 @@ $Name1 = 'WindowsCopilot'
 Function Test-RegistryValue1 ($RegsitryPath1, $Name1) {
 $RegistryPath1 = 'HKCU:\Software\Policies\Microsoft\Windows\'
 $Name1 = 'WindowsCopilot'
-$Property1 = (Get-ItemProperty -Path $RegistryPath1).$Name1
+$Property1 = (Get-ItemProperty -Path $RegistryPath1 -Name $Name)
 	if ($Property1) {
 		New-Item -Path $RegistryPath1 -Name $Name1 -Force	
 		
 		}
 	else {
-		Write-Host 'Key Already Exists'
+		Write-Host 'The Key is Already Present'
 	}
 }
 #run funciton1
@@ -23,13 +23,13 @@ Function Test-RegistryValue2 ($RegsitryPath2, $Name2, $Value2) {
 $RegistryPath2 = 'HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot\'
 $Name2 = 'TurnOffWindowsCopilot'
 $Value2 = '1'
-$Property2 = (Get-ItemProperty -Path $RegistryPath2).Name2
-	if ($Null -ne $Property2) {
+$Property2 = (Get-ItemPropertyValue -Path $RegistryPath2 -Name $Name2)
+	if ($Property2 -ne 1) {
 		New-ItemProperty -Path $RegistryPath2 -Name $Name2 -Value $Value2 -PropertyType DWORD -Force
 		
 		}
 	else {
-		Write-Host 'Key Already Exists'	
+		Write-Host 'Copilot is Disabled Already'	
 	}
 }
 #run funciton2 
