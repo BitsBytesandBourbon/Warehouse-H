@@ -10,7 +10,7 @@ Function Test-RegistryValue ($RegsitryPath, $Name, $Value) {
 $RegistryPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa'
 $Name = 'LmCompatibilityLevel'
 $Value = '5'
-	if ($null -ne $Property) {
+	if ($Property -eq 5) {
 		Write-Output "$write"
 		}
 	else {
