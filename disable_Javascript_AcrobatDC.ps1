@@ -1,16 +1,16 @@
-# set your path, key, and value here for get-itemproperty lookup
-$RegistryPath = 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa'
-$Name = 'DisableDomainCreds'
+# set your path, key, and value here
+$RegistryPath = 'HKLM:SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\'
+$Name = 'bDisableJavaScript'
 $Value = '1'
-#output and property get calls
-$write = 'Already Set Properly'
-$Property = (Get-ItemProperty -Path $RegistryPath -Name $Name)
+#output and value check statements
+$write = 'JavaScript is Disbaled for Acrobat DC'
+$Property = (Get-ItemPropertyValue -Path $RegistryPath).$Name
 #Function to check the value you are looking For and enter if absent
 Function Test-RegistryValue ($RegsitryPath, $Name, $Value) {
-$RegistryPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\'
-$Name = 'DisableDomainCreds'
+$RegistryPath = 'HKLM:SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\'
+$Name = 'bDisableJavaScript'
 $Value = '1'
-	if ($Property -eq 1) {
+	if ($Property eq 1) {
 		Write-Output "$write"
 		}
 	else {
