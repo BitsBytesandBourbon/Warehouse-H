@@ -10,7 +10,7 @@ Function Test-RegistryValue ($RegsitryPath, $Name, $Value) {
 $RegistryPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\'
 $Name = 'DisableDomainCreds'
 $Value = '1'
-	if ($null -ne $Property) {
+	if ($Property -eq 1) {
 		Write-Output "$write"
 		}
 	else {
