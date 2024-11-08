@@ -5,7 +5,7 @@ Function Test-RegistryValue1 ($RegsitryPath1, $Name1) {
 $RegistryPath1 = 'HKCU:\Software\Policies\Microsoft\Windows\'
 $Name1 = 'WindowsCopilot'
 $Property1 = (Get-ItemProperty -Path $RegistryPath1 -Name $Name)
-	if ($Property1) {
+	if ($Property1 -eq $Null) {
 		New-Item -Path $RegistryPath1 -Name $Name1 -Force	
 		
 		}
