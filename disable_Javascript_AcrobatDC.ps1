@@ -4,8 +4,9 @@ $Name = 'bDisableJavaScript'
 $Value = '1'
 #output and value check statements
 $write = 'JavaScript is Disbaled for Acrobat DC'
-$Property = (Get-ItemProperty -Path $RegistryPath -Name $Name -ErrorAction Ignore)
-$Property1 = (Get-ItemPropertyValue -Path $RegistryPath -Name $Name -ErrorAction Ignore)
+$ErrorActionPreference = "silentlycontinue"
+$Property = (Get-ItemProperty -Path $RegistryPath -Name $Name -ErrorAction silentlycontinue)
+$Property1 = (Get-ItemPropertyValue -Path $RegistryPath -Name $Name -ErrorAction silentlycontinue)
 #Function to check the value you are looking For and enter if absent
 Function Test-RegistryValue ($RegsitryPath, $Name, $Value) {
 $RegistryPath = 'HKLM:SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\'
