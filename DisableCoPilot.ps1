@@ -26,11 +26,14 @@ $Value2 = "1"
 $Property2 = (Get-ItemPropertyValue -Path $RegistryPath2 -Name $Name2)
 	if ($Property2 -ne 1) {
 		New-ItemProperty -Path $RegistryPath2 -Name $Name2 -Value $Value2 -PropertyType DWORD -Force
+		Get-AppxPackage -AllUsers | Where-Object {$_.Name -like "*Copilot*"} | ForEach-Object {Remove-AppxPackage -Package $_.PackageFullName -AllUsers -ErrorAction SilentlyContinue}
 		}
 	else {
 		Write-Host 'Copilot Already Disabled'	
+		Get-AppxPackage -AllUsers | Where-Object {$_.Name -like "*Copilot*"} | ForEach-Object {Remove-AppxPackage -Package $_.PackageFullName -AllUsers -ErrorAction SilentlyContinue}
 	}
-	Get-AppxPackage *copilot* | Remove-AppxPackage
+	
+	
 }
 #run funciton2 
 Test-RegistryValue2
