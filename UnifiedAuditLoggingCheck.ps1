@@ -21,8 +21,9 @@ $AuditlogState = (Get-AdminAuditLogConfig).UnifiedAuditLogIngestionEnabled
 		}
 	else {
 		Write-Output "Enabling Unified Audit Logs"
-		Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled:$true
+Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled:$true
 		Write-Output "Checking status"
+		Start-Sleep -Seconds 5
 		$NewAuditlogState = (Get-AdminAuditLogConfig).UnifiedAuditLogIngestionEnabled
 		If ($NewAuditlogState -eq "True") {
 		Write-Output "Unified Audit Logs Enabled"
