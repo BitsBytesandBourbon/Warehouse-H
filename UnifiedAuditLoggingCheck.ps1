@@ -23,6 +23,8 @@ $AuditlogState = (Get-AdminAuditLogConfig).UnifiedAuditLogIngestionEnabled
 		Write-Output "Enabling Unified Audit Logs"
 		Start-Job -Name SetAuditLogs -ScriptBlock { Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled:$true }
 		Wait-Job -Name SetAuditLogs
+		Write-Output "Checking status"
+		If ($AuditlogState -eq "True")
 		Write-Output "Unified Audit Logs Enabled"
 	}
 }
