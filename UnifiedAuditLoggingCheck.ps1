@@ -11,7 +11,7 @@ Write-Output "Exchange Online Management Installed"
 
 #enter the UPN for the tenant you are acccessig
 Write-Output "Logging In"
-Connect-ExchangeOnline -UserPrincipalName <Your UPN Here> -ShowBanner:$false
+Connect-ExchangeOnline -UserPrincipalName sk2715@decryptedtech.com -ShowBanner:$false
 #function to check to see if Unified Audit Logging is enabled and to enable it if not
 Function Check_UnifiedLogging ($AuditlogState) {
 	Write-Output "Checking Unified Log Status"
@@ -24,9 +24,12 @@ $AuditlogState = (Get-AdminAuditLogConfig).UnifiedAuditLogIngestionEnabled
 		Start-Job -Name SetAuditLogs -ScriptBlock { Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled:$true }
 		Wait-Job -Name SetAuditLogs
 		Write-Output "Checking status"
-		If ($AuditlogState -eq "True")
+		If ($AuditlogState -eq "True") {
 		Write-Output "Unified Audit Logs Enabled"
 	}
+	else {
+		Write-Output "Something Went Wrong Try Again"
+		}
 }
 #run the function
 Check_UnifiedLogging
