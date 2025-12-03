@@ -9,6 +9,8 @@ Start-Job -Name Install -ScriptBlock { Install-Module -Name ExchangeOnlineManage
 Wait-Job -Name Install
 Write-Output "Exchange Online Management Installed"
 
+Import-Module ExchangeOnlineManagement
+
 #enter the UPN for the tenant you are acccessig
 Write-Output "Logging In"
 Connect-ExchangeOnline -UserPrincipalName <Your UPN Here> -ShowBanner:$false
