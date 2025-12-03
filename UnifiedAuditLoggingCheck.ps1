@@ -29,7 +29,8 @@ $AuditlogState = (Get-AdminAuditLogConfig).UnifiedAuditLogIngestionEnabled
 	}
 	else {
 		Write-Output "Something Went Wrong Try Again"
-		}
+	}
+}
 }
 #run the function
 Check_UnifiedLogging
