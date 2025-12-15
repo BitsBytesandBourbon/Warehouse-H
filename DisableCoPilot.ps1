@@ -1,6 +1,6 @@
 $user = (Get-WmiObject -Class Win32_ComputerSystem | Select-Object -ExpandProperty Username) 
 $sid = (New-Object System.Security.Principal.NTAccount($user)).Translate([System.Security.Principal.SecurityIdentifier]).Value
-New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS
+New-PSDrive -Name HKU -PSProvider "Registry" -Root "HKU"
 
 #Function to check the value you are looking For and enter if absent
 Function Test-RegistryValue1 ($RegsitryPath1, $Name1) {
