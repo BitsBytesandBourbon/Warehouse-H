@@ -4,6 +4,8 @@ New-PSDrive -Name HKU -PSProvider "Registry" -Root "HKU"
 
 #Function to check the value you are looking For and enter if absent
 Function Test-RegistryValue1 ($RegsitryPath1, $Name1) {
+$user = (Get-WmiObject -Class Win32_ComputerSystem | Select-Object -ExpandProperty Username) 
+$sid = (New-Object System.Security.Principal.NTAccount($user)).Translate([System.Security.Principal.SecurityIdentifier]).Value
 $RegistryPath1 = "HKU:\$sid\Software\Policies\Microsoft\Windows\WindowsCopilot"
 $Name1 = "WindowsCopilot"
 $Property1 = (Get-Item -Path $RegistryPath1).PSChildName
@@ -20,6 +22,8 @@ Test-RegistryValue1
 
 #Function to check the value you are looking For and enter if absent
 Function Test-RegistryValue2 ($RegsitryPath2, $Name2, $Value2) {
+$user = (Get-WmiObject -Class Win32_ComputerSystem | Select-Object -ExpandProperty Username) 
+$sid = (New-Object System.Security.Principal.NTAccount($user)).Translate([System.Security.Principal.SecurityIdentifier]).Value
 $RegistryPath2 = "HKU:\$sid\Software\Policies\Microsoft\Windows\WindowsCopilot"
 $Name2 = "TurnOffWindowsCopilot"
 $Value2 = "1"
